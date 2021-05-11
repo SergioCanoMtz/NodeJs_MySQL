@@ -2,6 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const flash = require('connect-flash');
+const sesion = require('express-session');
+const smysql = require('express-mysql-session'); 
+const { database } = require('./keys');
 
  //inicializacion 
 const app = express();
@@ -19,16 +23,24 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 //Middlewares
+app.use(sesion({
+    secret: 'Cano',
+    resave: false,
+    saveUninitialized: false,
+    store: new smysql(database)
+
+}));
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+
 //variables globales
 app.use((req, res, next) => {
-
+    app.locals.correcto = req.flash('correcto');
     next();
 })
-
 
 //rutas
 app.use(require('./routes'));
