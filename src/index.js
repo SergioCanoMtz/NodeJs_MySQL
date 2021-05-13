@@ -28,7 +28,6 @@ app.use(sesion({
     resave: false,
     saveUninitialized: false,
     store: new smysql(database)
-
 }));
 app.use(flash());
 app.use(morgan('dev'));
