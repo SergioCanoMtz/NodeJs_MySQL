@@ -4,7 +4,8 @@
   "description": "Aplicación completa con MySQL, NodeJS, ExpressJS, CRUD",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/" 
+    "dev": "nodemon src/",
+    "start": "nodemon src/" 
   },
   "repository": {
     "type": "git",
