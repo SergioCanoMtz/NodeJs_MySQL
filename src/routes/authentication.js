@@ -35,4 +35,12 @@ router.get('/logout',isLoggedIn, (req, res)=>{
     res.redirect('/signin');
 });
 
+router.get('/signup', (req, res) =>{
+    res.render('auth/signup');
+});
+
+router.post('/signup', (req, res) =>{
+
+});
+
 module.exports = router;
